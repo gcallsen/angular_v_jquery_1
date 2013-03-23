@@ -14,10 +14,17 @@
 	// When DOM loads, initialize.
 	$(
 		function(){
-			$("#greeting").html("Hello World!");
+			// $("#greeting").html("Hello World!");
+			$('#greetingInput').keyup(function() {
+				var text = $('#greetingInput').val();
+				$('#greeting').html(text)
+			});
 		}
 	);
 </script>
+
+<label>Your Greeting:</label>
+<input id="greetingInput" type="text" placeholder="Type your Greeting!" />
 
 <h1 id="greeting"></h1>
 
