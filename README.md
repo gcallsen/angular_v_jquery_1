@@ -1,5 +1,8 @@
-# AngularJS Quick Examples
-Short overview of AngularJS. Comparison with libraries (i.e. jQuery).
+# AngularJS vs jQuery: Introductory Examples
+Basic examples demonstrating the differing approaches to handling data and
+user input between AngularJS and jQuery.
+
+Specific AngularJS concepts covered: Templates, Data binding, and Directives
 
 ## Step 01
 Explanation of Step 1
