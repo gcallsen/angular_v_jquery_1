@@ -207,7 +207,38 @@ directives in this example.
 The final step in this brief example is to add _data-specific logic_ to the
 directive.
 
+### The Linking function
+From Step03 we saw an empty `link` function. This is where the lion's share of
+directive logic will live. Refer to documentation for more info.
 
+The function will typically accept scope, element, and attrs, which refer to
+* The `scope` used by the directive (for registering watches)
+* The `iElement`, which is the instance element where the directive is used
+* The `iAttrs`, which are the instance attributes
+
+In this example we only use the scope in order to
+[$watch](http://docs.angularjs.org/api/ng.$rootScope.Scope#$watch) for updates
+to the seasonGreeting (season-greeting). Test this script leaving out this watch
+expression, you'll notice that scope.seasonGreeting does not have a value. That
+is due to Angular's digest cycle and bootstrapping process - that value may not
+necessarily exist at the time this directive linking function is first evaluated.
+
+We do a very simple string evaluation on this variable's value to see what
+season we think it is. `scope.seasonGreeting == "Merry Christmas"`
+
+Based on the season, we define a font_color variable to be used in our `template`
+to define the font color.
+
+### Take Away
+Directives allow for _data-specific logic_. This example is extremely contrived
+but that principle has big implications for data-centric applications.  This
+allows design to behave based on the underlying data and for the design / user
+experience to reflect the underlying data.
 
 ## Conclusion
-Conclusion of this small repo.
+The goal of this simple example is to highlight a critical difference in
+designing a web application with Angular versus nearly any other method (direct javascript, library-based (jQuery), other MV* frameworks): DATA
+
+Data is king and Angular allows an application to be designed in an extensible
+and maintainable fashion when data is critical to the application's design or
+use.
