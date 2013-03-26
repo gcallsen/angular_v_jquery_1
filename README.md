@@ -6,7 +6,7 @@ Specific AngularJS concepts covered: Templates, Data binding, and Directives
 
 ## Setup
 This example uses a basic working directory to begin, which includes
-[jQuery](http://www.http://jquery.com), [AngularJS](http://www.angularjs.org),
+[jQuery](http://jquery.com), [AngularJS](http://www.angularjs.org),
 and [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 (so it's just a little prettier).
 
@@ -112,10 +112,102 @@ example.
 ## Step 03
 `git checkout step-03`
 
-Step 3 explores reusable components
+Step 3 explores reusable components.  Think about how you would typically
+approach a 'widget'.
+
+* Server-side includes?
+* Client-side includes?
+* iFrames?
+
+AngularJS provides a way to extend the HTML vocabulary to address some of these
+issues.  Imagine a `<my-widget></my-widget>` tag. The requirements for this
+example are:
+
+* A reusable component
+* Custom greetings for each component, or, 'widget'
+* All widgets reflect the same user input
+
+### jQuery
+Currently no jQuery example.
+
+### Angular
+First, we'll designate this page as our 'hello-world' application so Angular
+knows about it when it bootstraps. `ng-app` is in fact a directive on it's own,
+with the purpose of identifying which element Angular should consider as the
+root element of our application (in this case, the whole page).
+
+> `<html ng-app="hello-world">`
+
+Next, let's create some awesome widgets on our page that follow the requirements
+set out above.  Don't worry, this will be tied together soon.
+
+> `<greeting-module season-greeting="Merry Christmas" greeting="{{greeting}}">`
+> `</greeting-module>`
+
+* We have a new HTML element called 'greeting-module'.
+  * This is a directive, it will be defined in our application in a moment.
+* Each directive has two attributes
+  * `season-greeting`
+    * Hard coded seasonal greeting, such as "Happy Easter"
+  * `greeting`
+    * The value of greeting, you'll notice, is actually bound to the current
+    value of our `greeting` variable, which is still defined by the current
+    value of `<input>`
+
+Now we have some new HTML elements on our page, each with some attributes.
+It's time to define the behavior of these _directives_.
+
+Inside our script we will create a new angular module called 'hello-world'
+(which links it to our ng-app directive of the same name). This is assigned
+to a variable 'app' (which is used for readability and code organization but
+is not necessary). The `[]` is used in more advance applications for dependency
+injection.
+
+> `app = angular.module('hello-world', []);`
+
+Define a directive for this application (app).
+
+> `app.directive('greetingModule', function() { ... });`
+
+* Note: Angular uses snake-case for attribute names and camelCase for the
+corresponding directive name. So, `<my-directive>` in your DOM is `myDirective`
+when defining the directive in your script.
+
+A directive has a laundry list of optional return attributes it can accept.
+For more detail, look at the [Directive Documentation](http://docs.angularjs.org/guide/directive). For this example, I'll highlight a few of them.
+
+* `restrict: 'E'`
+  * Restrict this directive to an Element. This can also be an
+  Attribute, Class, or Comment
+    * Example of Attribute: `<div my-directive></div>`
+* `scope: { ... }`
+  * Define the values of variables in the isolate scope of this directive.
+  * Pull them as Read-Only from the attributes of this directive (`@greeting`)
+  * See documentation for more on this.
+* `link: function(scope, element, attrs) { ... }`
+  * We will discuss this in Step 04. Not used right now.
+* `template: '<div>...</div>'`
+  * Define what HTML will be inserted into the directive and how our isloate
+  scope variables will be used.
+
+### Take Away
+Each directive in our DOM declares a hard-coded season-greeting (i.e. Happy
+Halloween) and a greeting, which reflects the current value of the `greeting`
+model defined in the user input.
+
+Angular then tells this directive to read the values of the 'season-greeting'
+and the 'greeting', then put them into a sentence format, wrapped in a '<div>'.
+
+We can have as many of these as we desire, as is shown with the three seasonal
+directives in this example.
 
 ## Step 04
-Explanation of Step 4
+`git checkout step-04`
+
+The final step in this brief example is to add _data-specific logic_ to the
+directive.
+
+
 
 ## Conclusion
 Conclusion of this small repo.
