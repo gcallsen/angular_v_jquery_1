@@ -11,7 +11,9 @@ and [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 (so it's just a little prettier).
 
 > ./static/js &rarr; jQuery, Angular, and Twitter Bootstrap
+
 > ./static/css &rarr; Twitter Bootstrap and main.css
+
 > ./static/img &rarr; Twitter Bootstrap
 
 Then we have our two example HTML files, one for jQuery and one for AngularJS.
@@ -19,6 +21,7 @@ Each of these has basic HTML5 doctype and structure, they include our relevant
 css/js file in header (I know, I know).
 
 > ./jquery_hello_world.html
+
 > ./angular_hello_world.html
 
 ## Step 01
