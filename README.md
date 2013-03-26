@@ -14,7 +14,9 @@ and [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 
 > ./static/css &rarr; Twitter Bootstrap and main.css
 
-> ./static/img &rarr; Twitter Bootstrap
+> ./static/img &rarr; Twitter Bootstrap **Note: /img/ is not tracked in this
+> repo. Nor are any of the Twitter bootstrap images. If you want them, simply
+> create an /img/ directory in ./static/ and add the bootsrap glyphcons.
 
 Then we have our two example HTML files, one for jQuery and one for AngularJS.
 Each of these has basic HTML5 doctype and structure, they include our relevant
