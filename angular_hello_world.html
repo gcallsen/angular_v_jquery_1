@@ -50,6 +50,11 @@
         //$scope.greeting = '';
     }]);
 
+	app.filter('reverse', function(){
+    	return function(s) {
+    		return s.split("").reverse().join("");
+    	}
+    });
 
 </script>
 
