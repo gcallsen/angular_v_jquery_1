@@ -27,8 +27,24 @@
 				link: function(scope, element, attrs) {
 					//Directive-specific logic can go here.
 					//Try to keep this 'read-only' where possible
+
+					// Watch for seasonGreeting to be modified, then let's
+					// apply some selective styling!
+					scope.$watch('seasonGreeting', function() {
+						if (scope.seasonGreeting == "Merry Christmas") {
+							scope.font_color = "red";
+						} else if (scope.seasonGreeting == "Happy Halloween") {
+							scope.font_color = "orange";
+						} else if (scope.seasonGreeting == "Happy Easter") {
+							scope.font_color = "pink";
+						} else {
+							scope.font_color = "black";
+						}
+					});
 				},
-				template: '<div>{{seasonGreeting}} {{greeting}}!</div>'
+				template: '<div style="color:{{font_color}};">\
+								{{seasonGreeting}} {{greeting}}!\
+							</div>'
 			};
 		})
 
