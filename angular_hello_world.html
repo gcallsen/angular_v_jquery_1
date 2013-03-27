@@ -43,10 +43,17 @@
 					});
 				},
 				template: '<div style="color:{{font_color}};">\
-								{{seasonGreeting}} {{greeting}}!\
+								{{seasonGreeting}} {{greeting | reverse}}!\
 							</div>'
 			};
 		})
+
+	/* Add a basic filter that we can use in our application */
+	app.filter('reverse', function(){
+    	return function(s) {
+    		return s.split("").reverse().join("");
+    	}
+    });
 
 	function HelloWorldCtrl($scope) {
 		// $scope.greeting = "Hello World! (from Angular)";
