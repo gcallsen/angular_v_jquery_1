@@ -12,11 +12,14 @@
 
 <script type="text/javascript">
 	function HelloWorldCtrl($scope) {
-		$scope.greeting = "Hello World! (from Angular)";
+		// $scope.greeting = "Hello World! (from Angular)";
 	}
 </script>
 
-<h1 ng-controller="HelloWorldCtrl">{{greeting}}</h1>
+<label>Your Greeting:</label>
+<input type="text" ng-model="greeting" placeholder="Type your Greeting!" />
+
+<h1>{{greeting}}</h1>
 
 </body>
 </html>
