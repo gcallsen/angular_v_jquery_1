@@ -55,13 +55,36 @@
     	}
     });
 
-	function HelloWorldCtrl($scope) {
+    /* A basic service that we will use in our controller */
+    app.factory('multiply', function() {
+    	return function(num1, num2){
+    		return num1*num2;
+    	}
+    });
+
+	function HelloWorldCtrl($scope, multiply) {
 		// $scope.greeting = "Hello World! (from Angular)";
+		$scope.number_1 = 5;
+        $scope.number_2 = 8;
+        $scope.multiplied = multiply($scope.number_1, $scope.number_2);
 	}
 
 </script>
 
 <div ng-controller="HelloWorldCtrl">
+
+	<!-- Separate scope variables and inline text -->
+	{{number_1}} times {{number_2}} equals {{multiplied}}
+	<br />
+	<!-- Make angular evaluate string and variable concatenation -->
+	{{number_1 + ' times ' + number_2 + ' equals ' + multiplied}}
+	<br />
+	<!-- Make angular evaluate the multiplication too! No Service needed. -->
+	{{number_1 + ' times ' + number_2 + ' equals ' + number_1*number_2}}
+
+	<br />
+	<hr />
+	<br />
 
 	<label>Your Name:</label>
 	<input type="text" ng-model="greeting" placeholder="Type your Name!" />
