@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="hello-world">
 <head>
 	<title>Hello World App - AngularJS</title>
 	<script src="static/lib/angular.min.js"></script>
@@ -11,15 +11,51 @@
 <body>
 
 <script type="text/javascript">
+	//Create our angular application - defined in the opening <html> tag
+	app = angular.module('hello-world', [])
+
+	//Create a simple directive.  It is an element and expects a 'season'
+	// passed to it.
+	app.
+		directive('greetingModule', function() {
+			return {
+				restrict: 'E',
+				scope: {
+					seasonGreeting: '@seasonGreeting',
+					greeting: '@greeting'
+				},
+				link: function(scope, element, attrs) {
+					//Directive-specific logic can go here.
+					//Try to keep this 'read-only' where possible
+				},
+				template: '<div style="color:{{font_color}};">{{seasonGreeting}} {{greeting}}!</div>'
+			};
+		})
+
 	function HelloWorldCtrl($scope) {
 		// $scope.greeting = "Hello World! (from Angular)";
 	}
+
 </script>
 
-<label>Your Greeting:</label>
-<input type="text" ng-model="greeting" placeholder="Type your Greeting!" />
+<div ng-controller="HelloWorldCtrl">
 
-<h1>{{greeting}}</h1>
+	<label>Your Name:</label>
+	<input type="text" ng-model="greeting" placeholder="Type your Name!" />
+
+	<!-- <h1>{{greeting}}</h1> -->
+
+	<br />
+	<hr />
+	<br />
+
+	<greeting-module season-greeting="Merry Christmas" greeting="{{greeting}}"></greeting-module>
+	<hr />
+	<greeting-module season-greeting="Happy Halloween" greeting="{{greeting}}"></greeting-module>
+	<hr />
+	<greeting-module season-greeting="Happy Easter" greeting="{{greeting}}"></greeting-module>
+
+</div><!-- end hello world controller -->
 
 </body>
 </html>
